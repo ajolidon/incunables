@@ -1,0 +1,64 @@
+{% extends 'relation.base.html.twig' %}
+
+{% block content %}
+    <h1>Title</h1>
+    <h2>#{{ title.id }} {{ title.value }} ({{ title.constantNameByValue('type', title.type) }})</h2>
+
+<table class="table table-striped">
+    <thead>
+    <tbody>
+    <tr>
+        <td>type</td>
+        <th scope="row">{{ title.constantNameByValue('type', title.type) }}</th>
+    </tr>
+    <tr>
+        <td>value</td>
+        <th scope="row">{{ title.value }}</th>
+    </tr>
+    <tr>
+        <td>additional value</td>
+        <th scope="row">{{ title.introductoryText }}</th>
+    </tr>
+    </tbody>
+</table>
+
+    <h3>Incunables</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>incunable</th>
+            <th>system number</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for incunable in title.incunables %}
+            <tr>
+                <td><a href="{{ path('relation_incunable', {'id': incunable.id }) }}">#{{ incunable.id }}</a></td>
+                <td>{{ incunable }}</td>
+                <td>{{ incunable.systemNumber }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Works</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>work</th>
+            <th>gnd</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for work in title.works %}
+            <tr>
+                <td><a href="{{ path('relation_work', {'id': work.id }) }}">#{{ work.id }}</a></td>
+                <td>{{ work }}</td>
+                <td>{{ work.gnd }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

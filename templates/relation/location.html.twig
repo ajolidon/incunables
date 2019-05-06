@@ -1,0 +1,75 @@
+{% extends 'relation.base.html.twig' %}
+
+{% block content %}
+    <h1>Location</h1>
+    <h2>#{{ location.id }} {{ location.name }}</h2>
+    <p>GND: <a target="_blank" href="http://d-nb.info/gnd/{{ location.gnd }}">{{ location.gnd }}</a></p>
+
+    <h3>Countries</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">name</th>
+            <th scope="col">abbreviation</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for country in location.countries %}
+            <tr>
+                <td><a href="{{ path('relation_country', {'id': country.id}) }}">#{{ country.id }}</a></td>
+                <td>{{ country.name }}</td>
+                <td>{{ country.abbreviation }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Incunables</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">title</th>
+            <th scope="col">system number</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for incunable in location.incunables %}
+            <tr>
+                <td><a href="{{ path('relation_incunable', {'id': incunable.id}) }}">#{{ incunable.id }}</a></td>
+                <td>{{ incunable }}</td>
+                <td>{{ incunable.systemNumber }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Persons and Corporations</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td scope="col">id</td>
+            <td scope="col">type</td>
+            <td scope="col">name</td>
+            <td scope="col">place of birth</td>
+            <td scope="col">place of death</td>
+            <td scope="col">place of business</td>
+            <td scope="col">gnd</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for subject in location.subjects %}
+            <tr>
+                <td><a href="{{ path('relation_subject', {'id': subject.id}) }}">#{{ subject.id }}</a></td>
+                <td>{{ subject.constantNameByValue('type', subject.type) }}</td>
+                <td>{{ subject }}</td>
+                <td>{% if location.name == subject.placeOfBirth %}<strong>{{ subject.placeOfBirth }}</strong>{% else %}{{ subject.placeOfBirth }}{% endif %}</td>
+                <td>{% if location.name == subject.placeOfDeath %}<strong>{{ subject.placeOfDeath }}</strong>{% else %}{{ subject.placeOfDeath }}{% endif %}</td>
+                <td>{% if location.name == subject.placeOfBusiness %}<strong>{{ subject.placeOfBusiness }}</strong>{% else %}{{ subject.placeOfBusiness }}{% endif %}</td>
+                <td>{{ subject.gnd }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

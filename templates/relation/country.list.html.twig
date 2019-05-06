@@ -1,0 +1,26 @@
+{% extends 'relation.base.html.twig' %}
+
+{% block content %}
+    <h1>Countries</h1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">name</th>
+            <th scope="col">abbreviation</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for country in countries %}
+            {% if not country.locations.empty %}
+            <tr>
+                <td><a href="{{ path('relation_country', {'id': country.id}) }}">#{{ country.id }}</a></td>
+                <td>{{ country.name }}</td>
+                <td>{{ country.abbreviation }}</td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

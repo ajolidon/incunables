@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Suche nach "{{ query }}" ({{ results|length }} Treffer)</h1>
+    {% for result in results %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    {% if incunable_service.author(result.incunable) is not empty %}
+                        <small class="text-muted">{{ incunable_service.author(result.incunable) }}</small><br>
+                    {% endif %}
+                    <a href="{{ path('incunable_show', {'slug': result.incunable.slug('preferredTitle'), 'id': result.incunable.id}) }}">{{ result.incunable.preferredTitle }}</a>
+                </h5>
+                <table class="table table-striped" style="font-size: 0.8rem">
+                    <body>
+                    {% for match in result.matches %}
+                        <tr>
+                            <td>{{ match.field }}</td>
+                            <td>{{ presenter_service.searchMatch(query, match)|raw }}</td>
+                        </tr>
+                    {% endfor %}
+                    </body>
+                </table>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

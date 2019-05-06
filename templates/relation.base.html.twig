@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Incunables</title>
+
+    {{ encore_entry_link_tags('app') }}
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="{{ path('relation_home') }}">Incunables</a>
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarLists" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+                Lists
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarLists">
+                <a class="dropdown-item" href="{{ path('relation_incunable_list') }}">Incunables</a>
+                <a class="dropdown-item" href="{{ path('relation_work_list') }}">Works</a>
+                <a class="dropdown-item" href="{{ path('relation_subject_list') }}">Subjects (Persons and
+                    Corporations)</a>
+                <a class="dropdown-item" href="{{ path('relation_title_list') }}">Titles</a>
+                <a class="dropdown-item" href="{{ path('relation_language_list') }}">Languages</a>
+                <a class="dropdown-item" href="{{ path('relation_location_list') }}">Locations</a>
+                <a class="dropdown-item" href="{{ path('relation_country_list') }}">Countries</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<main role="main" class="container">
+    {% block content %}
+    {% endblock %}
+</main>
+{{ encore_entry_script_tags('app') }}
+</body>
+</html>

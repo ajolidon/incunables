@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Berner Inkunabeln</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Assistant:400,700" rel="stylesheet">
+    <link href="https://unpkg.com/ionicons@4.5.5/dist/css/ionicons.min.css" rel="stylesheet">
+
+    {{ encore_entry_link_tags('app') }}
+</head>
+<body>
+
+{{ render(controller(
+    'App\\Controller\\NavigationController::topNavigation',
+    {'query': app.request.get('q')}
+)) }}
+
+<main role="main" class="container">
+    <div class="content">
+            {% block content %}
+
+            {% endblock %}
+    </div>
+</main>
+
+{{ encore_entry_script_tags('app') }}
+
+{% block scripts %}
+{% endblock %}
+</body>
+</html>

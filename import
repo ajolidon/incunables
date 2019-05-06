@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+bin/console inc:import
+rm -rf var/cache/*
+bin/console inc:search:index
+rm -rf var/cache/*
+bin/console cache:warmup

@@ -1,0 +1,20 @@
+{% if data is not empty %}
+<tr>
+    <th class="text-muted" scope="row">{% if data|length == 1 %}{{ titleSingular }}{% else %}{{ titlePlural }}{% endif %}</th>
+    <td>
+        {% if data|length == 1 %}
+            {{ data[0]|trans|raw }}
+        {% else %}
+            <table class="table table-striped table-sm">
+                {% for entry in data %}
+                    <tr>
+                        <td>
+                            {{ entry|trans|raw }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </td>
+</tr>
+{% endif %}

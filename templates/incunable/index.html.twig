@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h2 class="text-muted">{{ incunable_service.author(incunable) }}</h2>
+    <h1>{{ incunable.preferredTitle }}</h1>
+    <h4 class="text-muted" style="margin-bottom: 30px">Ort : Drucker, Jahr</h4>
+
+    <div class="row">
+        <div class="col-md-8 order-last order-md-first">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-inline d-lg-none">
+                        {% include 'incunable/partials/data_small.html.twig' %}
+                    </div>
+
+                    <div class="d-none d-lg-inline">
+                        {% include 'incunable/partials/data_large.html.twig' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 order-first order-md-last">
+            {% if incunable.scans is not empty %}
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            {% for scan in incunable.scans %}
+                                <div class="col-4 col-md-12">
+                                    <a target="_blank" href="{{ path('universal_viewer', {'id': scan.incunable.id, 'index': loop.index0}) }}"><img src="{{ path('api_iiif_image', {'id': scan.id, 'region': 'full', 'size': '320,', 'rotation': 0, 'quality': 'default', 'format': 'jpg'}) }}" style="width:100%;height:auto !important;margin-bottom: 15px" alt="{% if scan.description is not empty %}{{ scan.description }}{% else %}Keine Beschreibung vorhanden{% endif %}" title="{% if scan.description is not empty %}{{ scan.description }}{% else %}Keine Beschreibung vorhanden{% endif %}"></a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <small><a target="_blank" href="{{ url('api_iiif_presentation_manifest', {'id': incunable.id}) }}">IIIF Manifest</a></small>
+                    </div>
+                </div>
+            {% endif %}
+            <div class="card">
+                <div class="card-body">
+                    <a target="_blank" href="https://baselbern.swissbib.ch/Record/{{ incunable.swissbibSystemNumber }}" class="btn btn-primary">Zur Ansicht bestellen</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

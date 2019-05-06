@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>{{ location }}</h1>
+
+    <div class="row">
+        <div class="col-md-8">
+            {% if location.incunables is not empty %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Berner Inkunabeln mit Bezug zu "{{ location }}"</h5>
+                    <table class="table table-striped">
+                        <tbody>
+                        {% for incunable in location.incunables %}
+                            <tr>
+                                <td>
+                                    {% if incunable_service.author(incunable) is not empty %}<small>{{ incunable_service.author(incunable) }}</small><br>{% endif %}
+                                    <a href="{{ path('incunable_show', {'slug': incunable.slug('preferredTitle'), 'id': incunable.id}) }}">{{ incunable.preferredTitle }}</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if location.subjects is not empty %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Personen oder Körperschaften mit Bezug zu "{{ location }}"</h5>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col">Typ</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Bezug</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for subject in location.subjects %}
+                                <tr>
+                                    <td class="align-middle">{{ subject.constantNameByValue('type', subject.type)|trans }}</td>
+                                    <td class="align-middle">
+                                        <a href="{{ path('subject_show', {'slug': subject.slug('__toString'), 'id': subject.id}) }}">{{ subject }}</a>
+                                    </td>
+                                    <td class="align-middle">
+                                        {% for type in subject.locationTypes(location) %}
+                                            {{ type|trans }}<br>
+                                        {% endfor %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Länder</h5>
+                    <table class="table table-striped">
+                        <tbody>
+                        {% for country in location.countries %}
+                            <tr>
+                                <td>
+                                    <a href="{{ path('country_show', {'slug': country.slug('name'), 'id': country.id}) }}">{{ country }}</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            {% if location.gnd is not empty %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">GND</h5>
+                        <a target="_blank" href="http://d-nb.info/gnd/{{ location.gnd }}">{{ location.gnd }}</a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

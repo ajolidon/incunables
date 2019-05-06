@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Suche nach "{{ query }}"</h1>
+    <div class="alert alert-danger" role="alert">
+        Der Suchbegriff muss mindestens drei Zeichen lang sein.
+    </div>
+{% endblock %}

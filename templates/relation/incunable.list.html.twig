@@ -1,0 +1,24 @@
+{% extends 'relation.base.html.twig' %}
+
+{% block content %}
+    <h1>Incunables</h1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">title</th>
+            <th scope="col">system number</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for incunable in incunables %}
+            <tr>
+                <td><a href="{{ path('relation_incunable', {'id': incunable.id}) }}">#{{ incunable.id }}</a></td>
+                <td>{{ incunable }}</td>
+                <td>{{ incunable.systemNumber }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

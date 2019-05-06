@@ -1,0 +1,26 @@
+{% extends 'relation.base.html.twig' %}
+
+{% block content %}
+    <h1>Languages</h1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">abbreviation</th>
+            <th scope="col">name</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for language in languages %}
+            {% if language.languageIncunables is not empty or language.translationIncunables is not empty %}
+            <tr>
+                <td><a href="{{ path('relation_language', {'id': language.id}) }}">#{{ language.id }}</a></td>
+                <td>{{ language.abbreviation }}</td>
+                <td>{{ language.name }}</td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

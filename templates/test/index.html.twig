@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+<h1>Inkunabeln nach Inhaltslänge</h1>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Inkunabel</th>
+        <th>Inhaltslänge</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for entry in data %}
+        <tr>
+            <td><a href="{{ path('incunable_show', {'slug': 'length', 'id': entry.incunable.id}) }}">{{ entry.incunable.systemNumber }}</a></td>
+            <td>{{ entry.length }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

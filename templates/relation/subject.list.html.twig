@@ -1,0 +1,26 @@
+{% extends 'relation.base.html.twig' %}
+
+{% block content %}
+    <h1>Subjects (Persons or Corporations)</h1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">type</th>
+            <th scope="col">name</th>
+            <th scope="col">gnd</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for subject in subjects %}
+            <tr>
+                <td><a href="{{ path('relation_subject', {'id': subject.id}) }}">#{{ subject.id }}</a></td>
+                <td>{{ subject.constantNameByValue('type', subject.type) }}</td>
+                <td>{{ subject }}</td>
+                <td>{{ subject.gnd }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

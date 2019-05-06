@@ -1,0 +1,364 @@
+{% extends 'relation.base.html.twig' %}
+
+{% block content %}
+    <h1>Incunable</h1>
+    <h2>#{{ incunable.id }} {{ incunable }} ({{ incunable.systemNumber }})</h2>
+
+    <table class="table table-striped">
+        <tr>
+            <td>year of publication (from)</td>
+            <td>{{ incunable.yearOfPublicationFrom }}</td>
+        </tr>
+        <tr>
+            <td>year of publication (to)</td>
+            <td>{{ incunable.yearOfPublicationTo }}</td>
+        </tr>
+        <tr>
+            <td>signature</td>
+            <td>{{ incunable.signature }}</td>
+        </tr>
+        <tr>
+            <td>edition</td>
+            <td>{{ incunable.edition }}</td>
+        </tr>
+        <tr>
+            <td>pages</td>
+            <td>{{ incunable.pages }}</td>
+        </tr>
+        <tr>
+            <td>illustrations</td>
+            <td>{{ incunable.illustrations }}</td>
+        </tr>
+        <tr>
+            <td>size</td>
+            <td>{{ incunable.size }}</td>
+        </tr>
+        <tr>
+            <td>provenance</td>
+            <td>{{ incunable.provenance }}</td>
+        </tr>
+        <tr>
+            <td>cover</td>
+            <td>{{ incunable.cover }}</td>
+        </tr>
+        <tr>
+            <td>book block</td>
+            <td>{{ incunable.bookBlock }}</td>
+        </tr>
+        <tr>
+            <td>further notes</td>
+            <td>{{ incunable.furtherNotes }}</td>
+        </tr>
+    </table>
+
+    <h3>Physical notes</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td scope="col">note</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for note in incunable.physicalNotes %}
+            <tr>
+                <td>{{ note }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Signature formulas</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td scope="col">formula</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for formula in incunable.signatureFormulas %}
+            <tr>
+                <td>{{ formula }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Imprints</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td scope="col">location</td>
+            <td scope="col">printer/publisher</td>
+            <td scope="col">year</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for imprint in incunable.imprints %}
+            <tr>
+                <td>{{ imprint.location }}</td>
+                <td>{{ imprint.printer }}</td>
+                <td>{{ imprint.year }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Imprint notes</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td scope="col">note</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for note in incunable.imprintNotes %}
+            <tr>
+                <td>{{ note }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Further notes</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td scope="col">note</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for note in incunable.notes %}
+            <tr>
+                <td>{{ note }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Contains</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td scope="col">contains</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for contains in incunable.contains %}
+            <tr>
+                <td>{{ contains }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Digitalisations</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td scope="col">title</td>
+            <td scope="col">url</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for digitalisation in incunable.digitalisations %}
+            <tr>
+                <td>{{ digitalisation.title }}</td>
+                <td><a target="_blank" href="{{ digitalisation.url }}">{{ digitalisation.url }}</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>References</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td scope="col">source</td>
+            <td scope="col">identifier</td>
+            <td scope="col">url</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for reference in incunable.additionalReferences %}
+            <tr>
+                <td>{{ reference.source }}</td>
+                <td>{{ reference.identifier }}</td>
+                <td><a target="_blank" href="{{ reference.url }}">{{ reference.url }}</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Languages</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td scope="col">id</td>
+            <td scope="col">name</td>
+            <td scope="col">abbreviation</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for language in incunable.languages %}
+            <tr>
+                <td><a href="{{ path('relation_language', {'id': language.id }) }}">#{{ language.id }}</a></td>
+                <td>{{ language.name }}</td>
+                <td>{{ language.abbreviation }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Translations</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td scope="col">id</td>
+            <td scope="col">name</td>
+            <td scope="col">abbreviation</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for language in incunable.translations %}
+            <tr>
+                <td><a href="{{ path('relation_language', {'id': language.id }) }}">#{{ language.id }}</a></td>
+                <td>{{ language.name }}</td>
+                <td>{{ language.abbreviation }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Locations</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td scope="col">id</td>
+            <td scope="col">name</td>
+            <td scope="col">gnd</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for location in incunable.locations %}
+            <tr>
+                <td><a href="{{ path('relation_location', {'id': location.id }) }}">#{{ location.id }}</a></td>
+                <td>{{ location.name }}</td>
+                <td>{{ location.gnd }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Titles</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td scope="col">id</td>
+                <td scope="col">title (rendered)</td>
+                <td scope="col">type</td>
+                <td scope="col">value</td>
+                <td scope="col">additional value</td>
+            </tr>
+        </thead>
+        <tbody>
+        {% for title in incunable.titles %}
+            <tr>
+                <td><a href="{{ path('relation_title', {'id': title.id }) }}">#{{ title.id }}</a></td>
+                <td>{{ title }}</td>
+                <td>{{ title.constantNameByValue('type', title.type) }}</td>
+                <td>{{ title.value }}</td>
+                <td>{{ title.introductoryText }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <h3>Related Works</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td scope="col">work id</td>
+            <td scope="col">title</td>
+            <td scope="col">work gnd</td>
+            <td scope="col">subject id</td>
+            <td scope="col">relation type</td>
+            <td scope="col">subject</td>
+            <td scope="col">subject gnd</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for relation in incunable.relatedWorks %}
+            <tr>
+                <td><a href="{{ path('relation_work', {'id': relation.work.id}) }}">#{{ relation.work.id }}</a></td>
+                <td>{{ relation.work }}</td>
+                <td>{% if relation.work.gnd is not empty %}{{ relation.work.gnd }}{% endif %}</td>
+                <td>{% if relation.subject is not empty %}<a href="{{ path('relation_subject', {'id': relation.subject.id}) }}">#{{ relation.subject.id }}{% endif %}</a></td>
+                <td>{% if relation.subject is not empty %}{{ relation.type.name }} ({{ relation.type.abbreviation }}){% endif %}</td>
+                <td>{% if relation.subject is not empty %}{{ relation.subject }}{% endif %}</td>
+                <td>{% if relation.subject is not empty and relation.subject.gnd is not empty %}{{ relation.subject.gnd }}{% endif %}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Related Persons and Corporations (Main entries)</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td scope="col">id</td>
+            <td scope="col">relation type</td>
+            <td scope="col">subject type</td>
+            <td scope="col">name</td>
+            <td scope="col">gnd</td>
+            <td scope="col">matching locations</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for relation in incunable.directlyRelatedSubjects(true) %}
+            {% set matchingLocations = incunable.matchingLocations(relation.subject.locations) %}
+            <tr>
+                <td><a href="{{ path('relation_subject', {'id': relation.subject.id}) }}">#{{ relation.subject.id }}</a></td>
+                <td>{{ relation.type.name }} ({{ relation.type.abbreviation }})</a></td>
+                <td>{{ relation.subject.constantNameByValue('type', relation.subject.type) }}</td>
+                <td>{{ relation.subject }}</td>
+                <td>{% if relation.subject.gnd is not empty %}{{ relation.subject.gnd }}{% endif %}</td>
+                <td>
+                    {% for location in matchingLocations %}
+                        <li>{{ location.name }}</li>
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Related Persons and Corporations (Additional entries)</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td scope="col">id</td>
+            <td scope="col">relation type</td>
+            <td scope="col">subject type</td>
+            <td scope="col">name</td>
+            <td scope="col">gnd</td>
+            <td scope="col">matching locations</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for relation in incunable.directlyRelatedSubjects(false) %}
+            {% set matchingLocations = incunable.matchingLocations(relation.subject.locations) %}
+            <tr>
+                <td><a href="{{ path('relation_subject', {'id': relation.subject.id}) }}">#{{ relation.subject.id }}</a></td>
+                <td>{{ relation.type.name }} ({{ relation.type.abbreviation }})</a></td>
+                <td>{{ relation.subject.constantNameByValue('type', relation.subject.type) }}</td>
+                <td>{{ relation.subject }}</td>
+                <td>{% if relation.subject.gnd is not empty %}{{ relation.subject.gnd }}{% endif %}</td>
+                <td>
+                    {% for location in matchingLocations %}
+                        <li>{{ location.name }}</li>
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

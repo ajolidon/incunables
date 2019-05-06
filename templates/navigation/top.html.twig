@@ -1,0 +1,29 @@
+<div class="header d-none d-lg-block" style="background-image: url('{{ headerImage }}')"></div>
+<div class="logo d-none d-lg-block">
+    <a href="{{ path('home') }}"><img src="{{ asset('images/logo.png') }}"></a>
+</div>
+
+<nav class="navbar-main navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand d-inline-block d-lg-none" href="{{ path('home') }}">Berner Inkunabeln</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item{% if route == 'home' %} active{% endif %}">
+                <a class="nav-link" href="{{ path('home') }}">Home</a>
+            </li>
+            <li class="nav-item{% if route == 'system_number' %} active{% endif %}">
+                <a class="nav-link" href="{{ path('system_number') }}">Inkunabeln nach Systemnummer</a>
+            </li>
+        </ul>
+        <form class="form-inline mt-2 mt-md-0" action="{{ path('search') }}">
+            <div class="input-group">
+                <input class="form-control search-query" type="text" name="q" placeholder="Suchbegriff" value="{{ query }}" aria-label="Suche">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary search-button" type="submit"><i class="icon ion-md-search"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</nav>

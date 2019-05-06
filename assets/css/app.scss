@@ -1,0 +1,104 @@
+$primary: rgb(105, 0, 0);
+$secondary: #ede9de;
+
+@import "~bootstrap/scss/bootstrap";
+
+html, body{
+  min-height: calc(100% + 200px);
+}
+
+body{
+  font-family: 'Assistant', sans-serif;
+  background-color: rgba($secondary, 0.5);
+}
+
+.navbar{
+  font-size: 18px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.75);
+  &:hover{
+    color: rgba(255, 255, 255, 0.9);
+  }
+}
+
+.bg-dark{
+    background-color: rgb(105, 0, 0) !important;
+};
+
+.header{
+  height: 125px;
+  background-size: 120%;
+  background-position: center center;
+  opacity: 0.5;
+}
+
+.logo{
+    position: absolute;
+    top: 13px;
+    left: 13px;
+}
+
+.content{
+  padding-top: 2rem;
+}
+
+.btn{
+  .icon{
+    font-size: 24px;
+    float:left;
+    margin-top: -5px;
+    margin-bottom: -7px !important;
+  }
+}
+
+.card{
+  margin-bottom: 30px;
+}
+
+.card-body.media-list{
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+li.media{
+  border-bottom: 1px solid rgba($primary, 0.25);
+  padding: 10px;
+  margin-left: -10px;
+  margin-right: -10px;
+  cursor:pointer;
+  &:hover{
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  }
+  &:last-child{
+    border-bottom: none;
+  }
+}
+
+.dont-break-out {
+
+  /* These are technically the same, but use both */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  -ms-word-break: break-all;
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: break-all;
+  /* Instead use this non-standard one: */
+  word-break: break-word;
+
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+
+}
+
+.more{
+  max-height: 50px;
+  overflow-y: hidden;
+}

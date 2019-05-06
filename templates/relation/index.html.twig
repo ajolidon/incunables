@@ -1,0 +1,22 @@
+{% extends 'relation.base.html.twig' %}
+
+{% block content %}
+    <h1>Lists</h1>
+
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <td><a href="{{ path('relation_incunable_list') }}">Incunables</a></td>
+        </tr>
+        <tr>
+            <td><a href="{{ path('relation_work_list') }}">Works</a></td>
+        </tr>
+        <tr>
+            <td><a href="{{ path('relation_subject_list') }}">Subjects (Persons and Corporations)</a></td>
+        </tr>
+        <tr>
+            <td><a href="{{ path('relation_title_list') }}">Titles</a></td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}

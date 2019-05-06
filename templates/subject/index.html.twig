@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>{{ subject }}</h1>
+
+    <div class="row">
+        <div class="col-md-8">
+            {% if incunable_service.subjectRelationIncunables(subject) is not empty %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Berner Inkunabeln mit Bezug zu "{{ subject }}"</h5>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">Inkunabel</th>
+                            <th scope="col">Beziehung</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for relation in incunable_service.subjectRelationIncunables(subject) %}
+                                <tr>
+                                    <td class="align-middle">{% if incunable_service.author(relation.incunable) is not empty %}<small>{{ incunable_service.author(relation.incunable) }}</small><br>{% endif %}
+                                        <a href="{{ path('incunable_show', {'slug': relation.incunable.slug('preferredTitle'), 'id': relation.incunable.id}) }}">{{ relation.incunable.preferredTitle }}</a></td>
+                                    <td class="align-middle">{{ relation.type.name|trans }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if incunable_service.subjectRelationWorks(subject) is not empty %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Werke mit Bezug zu "{{ subject }}"</h5>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col">Werk</th>
+                                <th scope="col">Beziehung</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for relation in incunable_service.subjectRelationWorks(subject) %}
+                                <tr>
+                                    <td class="align-middle">{% if incunable_service.workAuthor(relation.work) is not empty %}<small>{{ incunable_service.workAuthor(relation.work) }}</small><br>{% endif %}
+                                        <a href="{{ path('work_show', {'slug': relation.work.slug('preferredTitle'), 'id': relation.work.id}) }}">{{ relation.work.preferredTitle }}</a></td>
+                                    <td class="align-middle">{{ relation.type.name|trans }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Typ</h5>
+                    {{ subject.constantNameByValue('type', subject.type)|trans }}
+                </div>
+            </div>
+            {% if subject.anyLocation %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Geographischer Bezug</h5>
+                        <table class="table table-striped">
+                            <tbody>
+                            {% if subject.placeOfBirth is not empty %}
+                                <tr>
+                                    <td>Geburtsort</td>
+                                    {% set location = subject.locationByName(subject.placeOfBirth) %}
+                                    <td><a href="{{ path('location_show', {'slug': location.slug('name'), 'id': location.id}) }}">{{ location }}</a></td>
+                                </tr>
+                            {% endif %}
+                            {% if subject.placeOfDeath is not empty %}
+                                <tr>
+                                    <td>Sterbeort</td>
+                                    {% set location = subject.locationByName(subject.placeOfDeath) %}
+                                    <td><a href="{{ path('location_show', {'slug': location.slug('name'), 'id': location.id}) }}">{{ location }}</a></td>
+                                </tr>
+                            {% endif %}
+                            {% if subject.placeOfBusiness is not empty %}
+                                <tr>
+                                    <td>Wirkungsort</td>
+                                    {% set location = subject.locationByName(subject.placeOfBusiness) %}
+                                    <td><a href="{{ path('location_show', {'slug': location.slug('name'), 'id': location.id}) }}">{{ location }}</a></td>
+                                </tr>
+                            {% endif %}
+                            {% if subject.secondPlaceOfBusiness is not empty %}
+                                <tr>
+                                    <td>Wirkungsort</td>
+                                    {% set location = subject.locationByName(subject.secondPlaceOfBusiness) %}
+                                    <td><a href="{{ path('location_show', {'slug': location.slug('name'), 'id': location.id}) }}">{{ location }}</a></td>
+                                </tr>
+                            {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if subject.gnd is not empty %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">GND</h5>
+                    <a target="_blank" href="http://d-nb.info/gnd/{{ subject.gnd }}">{{ subject.gnd }}</a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

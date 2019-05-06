@@ -1,0 +1,26 @@
+{% extends 'relation.base.html.twig' %}
+
+{% block content %}
+    <h1>Titles</h1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">type</th>
+            <th scope="col">value</th>
+            <th scope="col">additional value</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for title in titles %}
+            <tr>
+                <td><a href="{{ path('relation_title', {'id': title.id }) }}">#{{ title.id }}</a></td>
+                <td>{{ title.constantNameByValue('type', title.type) }}</td>
+                <td>{{ title.value }}</td>
+                <td>{{ title.introductoryText }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

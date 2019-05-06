@@ -1,0 +1,55 @@
+{% extends 'relation.base.html.twig' %}
+
+{% block content %}
+    <h1>Work</h1>
+    <h2>#{{ work.id }} {{ work }}</h2>
+    {% if work.gnd is not empty %}<p>GND: <a target="_blank" href="http://d-nb.info/gnd/{{ work.gnd }}">{{ work.gnd }}</a></p>{% endif %}
+    <h3>Titles</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td scope="col">id</td>
+                <td scope="col">type</td>
+                <td scope="col">value</td>
+                <td scope="col">additional value</td>
+            </tr>
+        </thead>
+        <tbody>
+        {% for title in work.titles %}
+            <tr>
+                <td><a href="{{ path('relation_title', {'id': title.id }) }}">#{{ title.id }}</a></td>
+                <td>{{ title.constantNameByValue('type', title.type) }}</td>
+                <td>{{ title.value }}</td>
+                <td>{{ title.introductoryText }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <h3>Relations</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>incunable id</th>
+            <th>incunable</th>
+            <th>work relation type</th>
+            <th>subject id</th>
+            <th>subject type</th>
+            <th>subject</th>
+            <th>subject gnd</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for relation in work.relations %}
+            <tr>
+                <td><a href="{{ path('relation_incunable', {'id': relation.incunable.id }) }}">#{{ relation.incunable.id }}</a></td>
+                <td>{{ relation.incunable }} ({{ relation.incunable.systemNumber }})</td>
+                <td>{% if relation.type is not empty %}{{ relation.type.name }} ({{ relation.type.abbreviation }}){% endif %}</td>
+                <td>{% if relation.subject is not empty %}<a href="{{ path('relation_subject', {'id': relation.subject.id}) }}">#{{ relation.subject.id }}{% endif %}</td>
+                <td>{% if relation.subject is not empty %}{{ relation.subject.constantNameByValue('type', relation.subject.type) }}{% endif %}</td>
+                <td>{% if relation.subject is not empty %}{{ relation.subject }}{% endif %}</td>
+                <td>{% if relation.subject is not empty and relation.subject.gnd is not empty %}{{ relation.subject.gnd }}{% endif %}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

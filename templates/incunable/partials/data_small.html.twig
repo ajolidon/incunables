@@ -1,0 +1,108 @@
+<table class="table table-striped table-sm">
+    <tbody>
+    <!-- signature -->
+    {% set titleSingular = 'Signatur' %}
+    {% set titlePlural = 'Signatur' %}
+    {% set data = [incunable.signature]  %}
+    {% include 'incunable/partials/data_entry_small.html.twig' %}
+
+    <!-- present title -->
+    {% set titleSingular = 'Vorlagetitel' %}
+    {% set titlePlural = 'Vorlagetitel' %}
+    {% set data = [incunable_service.presentTitle(incunable)]  %}
+    {% include 'incunable/partials/data_entry_small.html.twig' %}
+
+    <!-- further related subjects -->
+    {% set titleSingular = 'Weitere Beteiligte' %}
+    {% set titlePlural = 'Weitere Beteiligte' %}
+    {% set data = incunable_service.furtherParticipants(incunable)  %}
+    {% include 'incunable/partials/data_entry_small.html.twig' %}
+
+    <!-- further titles -->
+    {% set titleSingular = 'Weiterer Titel' %}
+    {% set titlePlural = 'Weitere Titel' %}
+    {% set data = incunable_service.furtherTitles(incunable)  %}
+    {% include 'incunable/partials/data_entry_small.html.twig' %}
+
+    <!-- imprints -->
+    {% set titleSingular = 'Impressum' %}
+    {% set titlePlural = 'Impressen' %}
+    {% set data = incunable.imprints  %}
+    {% include 'incunable/partials/data_entry_small.html.twig' %}
+
+    <!-- languages -->
+    {% set titleSingular = 'Sprache' %}
+    {% set titlePlural = 'Sprachen' %}
+    {% set data = incunable.languages  %}
+    {% include 'incunable/partials/data_entry_small.html.twig' %}
+
+    <!-- physical notes -->
+    {% set titleSingular = 'Physische Beschreibung' %}
+    {% set titlePlural = 'Physische Beschreibung' %}
+    {% set data = incunable_service.physicalNotes(incunable)  %}
+    {% include 'incunable/partials/data_entry_small.html.twig' %}
+
+    <!-- signature formulas -->
+    {% set titleSingular = 'Signaturformel' %}
+    {% set titlePlural = 'Signaturformeln' %}
+    {% set data = incunable.signatureFormulas  %}
+    {% include 'incunable/partials/data_entry_small.html.twig' %}
+
+    <!-- contained works -->
+    {% set titleSingular = 'Enthaltenes Werk' %}
+    {% set titlePlural = 'Enthaltene Werke' %}
+    {% set data = incunable_service.relatedWorks(incunable)  %}
+    {% include 'incunable/partials/data_entry_small.html.twig' %}
+
+    <!-- additional references -->
+    {% set titleSingular = 'Referenz' %}
+    {% set titlePlural = 'Referenzen' %}
+    {% set data = incunable_service.additionalReferences(incunable)  %}
+    {% include 'incunable/partials/data_entry_small.html.twig' %}
+
+    <!-- digitalisations  -->
+    {% set titleSingular = 'Externes Digitalisat' %}
+    {% set titlePlural = 'Externe Digitalisate' %}
+    {% set data = incunable_service.digitalisations(incunable)  %}
+    {% include 'incunable/partials/data_entry_small.html.twig' %}
+
+    <!-- notes -->
+    {% set titleSingular = 'Weiteres zur Ausgabe' %}
+    {% set titlePlural = 'Weiteres zur Ausgabe' %}
+    {% set data = incunable.notes  %}
+    {% include 'incunable/partials/data_entry_small.html.twig' %}
+
+    <!-- imprint notes -->
+    {% set titleSingular = 'Weiteres zum Impressum' %}
+    {% set titlePlural = 'Weiteres zum Impressum' %}
+    {% set data = incunable.imprintNotes  %}
+    {% include 'incunable/partials/data_entry_small.html.twig' %}
+
+    <!-- provenance -->
+    {% set titleSingular = 'Provenienz' %}
+    {% set titlePlural = 'Provenienz' %}
+    {% set data = [incunable.provenance]  %}
+    {% include 'incunable/partials/data_entry_small.html.twig' %}
+
+    <!-- cover -->
+    {% set titleSingular = 'Einband' %}
+    {% set titlePlural = 'Einband' %}
+    {% set data = [incunable.cover]  %}
+    {% include 'incunable/partials/data_entry_small.html.twig' %}
+
+    <!-- bookblock -->
+    {% set titleSingular = 'Buchblock' %}
+    {% set titlePlural = 'Buchblock' %}
+    {% set data = [incunable.bookblock]  %}
+    {% include 'incunable/partials/data_entry_small.html.twig' %}
+
+    <!-- further notes -->
+    {% set titleSingular = 'Weiteres zum Exemplar' %}
+    {% set titlePlural = 'Weiteres zum Exemplar' %}
+    {% set data = [incunable.furtherNotes]  %}
+    {% include 'incunable/partials/data_entry_small.html.twig' %}
+
+
+
+    </tbody>
+</table>

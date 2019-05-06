@@ -1,0 +1,24 @@
+{% extends 'relation.base.html.twig' %}
+
+{% block content %}
+    <h1>Works</h1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">title</th>
+            <th scope="col">gnd</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for work in works %}
+            <tr>
+                <td><a href="{{ path('relation_work', {'id': work.id}) }}">#{{ work.id }}</a></td>
+                <td>{{ work }}</td>
+                <td>{{ work.gnd }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

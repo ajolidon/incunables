@@ -1,0 +1,36 @@
+{% extends 'relation.base.html.twig' %}
+
+{% block content %}
+    <h1>Language</h1>
+    <h2>#{{ language.id }} {{ language.name }} ({{ language.abbreviation }})</h2>
+
+    <h3>Incunables</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>incunable</th>
+            <th>system number</th>
+            <th>language relation</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for incunable in language.languageIncunables %}
+            <tr>
+                <td><a href="{{ path('relation_incunable', {'id': incunable.id }) }}">#{{ incunable.id }}</a></td>
+                <td>{{ incunable }}</td>
+                <td>{{ incunable.systemNumber }}</td>
+                <td>Language</td>
+            </tr>
+        {% endfor %}
+        {% for incunable in language.translationIncunables %}
+            <tr>
+                <td><a href="{{ path('relation_incunable', {'id': incunable.id }) }}">#{{ incunable.id }}</a></td>
+                <td>{{ incunable }}</td>
+                <td>{{ incunable.systemNumber }}</td>
+                <td>Translation</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

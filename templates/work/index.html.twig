@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h2 class="text-muted">{{ incunable_service.workAuthor(work) }}</h2>
+    <h1>{{ work.preferredTitle }}</h1>
+
+    <div class="row">
+        <div class="col-md-8">
+            {% if incunable_service.workFurtherTitles(work) is not empty %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Weitere Titel</h5>
+                        <table class="table table-striped">
+                            <tbody>
+                            {% for title in incunable_service.workFurtherTitles(work) %}
+                                <tr>
+                                    <td>
+                                        {{ title }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {% endif %}
+            {% if incunable_service.incunablesByWork(work) is not empty %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Berner Inkunabeln mit Bezug zu diesem Werk</h5>
+                    <table class="table table-striped">
+                        <tbody>
+                        {% for incunable in incunable_service.incunablesByWork(work) %}
+                            <tr>
+                                <td>
+                                    {% if incunable_service.author(incunable) is not empty %}<small>{{ incunable_service.author(incunable) }}</small><br>{% endif %}
+                                    <a href="{{ path('incunable_show', {'slug': incunable.slug('preferredTitle'), 'id': incunable.id}) }}">{{ incunable.preferredTitle }}</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% endif %}
+
+            {% set relations = incunable_service.sortRelationsBySubject(work.relations) %}
+            {% if relations is not empty %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Personen oder Körperschaften mit Bezug zu diesem Werk</h5>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col">Typ</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Bezug</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for relation in relations %}
+                                <tr>
+                                    <td class="align-middle">{{ relation.subject.constantNameByValue('type', relation.subject.type)|trans }}</td>
+                                    <td class="align-middle">
+                                        <a href="{{ path('subject_show', {'slug': relation.subject.slug('__toString'), 'id': relation.subject.id}) }}">{{ relation.subject }}</a>
+                                    </td>
+                                    <td class="align-middle">{{ relation.type.name|trans }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="col-md-4">
+            {% if work.gnd is not empty %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">GND</h5>
+                        <a target="_blank" href="http://d-nb.info/gnd/{{ work.gnd }}">{{ work.gnd }}</a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

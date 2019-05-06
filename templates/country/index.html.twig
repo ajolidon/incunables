@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>{{ country }}</h1>
+
+    <div class="row">
+        <div class="col-md-8">
+            {% if incunable_service.incunablesByCountry(country) is not empty %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Inkunabeln mit Bezug zu "{{ country }}"</h5>
+                    <table class="table table-striped">
+                        {% for incunable in incunable_service.incunablesByCountry(country) %}
+                            <tr>
+                                <td>
+                                    {% if incunable_service.author(incunable) is not empty %}<small>{{ incunable_service.author(incunable) }}</small><br>{% endif %}
+                                    <a href="{{ path('incunable_show', {'slug': incunable.slug('preferredTitle'), 'id': incunable.id}) }}">{{ incunable.preferredTitle }}</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if incunable_service.subjectsByCountry(country) is not empty %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Personen oder Körperschaften mit Bezug zu "{{ country }}"</h5>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col">Typ</th>
+                                <th scope="col">Name</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for subject in incunable_service.subjectsByCountry(country) %}
+                                <tr>
+                                    <td>{{ subject.constantNameByValue('type', subject.type)|trans }}</td>
+                                    <td>
+                                        <a href="{{ path('subject_show', {'slug': subject.slug('__toString'), 'id': subject.id}) }}">{{ subject }}</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Orte</h5>
+                    <table class="table table-striped">
+                        <tbody>
+                        {% for location in country.locations %}
+                            <tr>
+                                <td>
+                                    <a href="{{ path('location_show', {'slug': location.slug('name'), 'id': location.id}) }}">{{ location }}</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

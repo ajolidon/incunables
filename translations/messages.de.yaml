@@ -1,0 +1,69 @@
+PERSON: Person
+CORPORATION: Körperschaft
+PLACE_OF_BIRTH: Geburtsort
+PLACE_OF_DEATH: Sterbeort
+PLACE_OF_BUSINESS: Wirkungsort
+Arabic: Arabisch
+Aramaic: Aramäisch
+English: Englisch
+French: Französisch
+German: Deutsch
+'Greek, Ancient (to 1453)': 'Altgriechisch (bis 1453)'
+Hebrew: Hebräisch
+Italian: Italienisch
+Latin: Lateinisch
+Austria: Österreich
+'Austria (-12.11.1918)': 'Österreich (-12.11.1918)'
+Belgium: Belgien
+Croatia: Kroatien
+'Czech Republic': Tschechien
+Czechoslovakia: Tschechoslowakei
+Egypt: Ägypten
+France: Frankreich
+Germany: Deutschland
+'Germany East': 'Deutsche Demokratische Republik (DDR)'
+'Great Britain': Grossbritannien
+Greece: Griechenland
+Hungary: Ungarn
+Iran: Iran
+Ireland: Irland
+Israel: Israel
+Italy: Italien
+Jordan: Jordanien
+Netherlands: Niederlande
+'Ottoman Empire': 'Osmanisches Reich'
+'Palestinian Arabs': Palästina
+Poland: Polen
+Portugal: Portugal
+Romania: Rumänien
+Slovenia: Slowenien
+Spain: Spanien
+Switzerland: Schweiz
+Turkey: Türkei
+'Vatican City': Vatikan
+Yugoslavia: Jugoslawien
+Author: Verfasser
+Printer: Drucker
+'Former owner': 'Früherer Eigentümer'
+Dedicatee: Widmungsempfänger
+'Writer of supplementary textual content': 'Verfasser von ergänzendem Text'
+Editor: Herausgeber
+Publisher: Verlag
+Binder: Buchbinder
+Other: Sonstige
+Compiler: Zusammenstellender
+Translator: Übersetzer
+Illustrator: Illustrator
+Patron: Auftraggeber
+Inscriber: 'Beschriftende Person'
+Contributor: Mitwirkender
+'Writer of added commentary': Kommentarverfasser
+'Writer of preface': 'Verfasser eines Vorworts'
+Bookseller: Buchhändler
+Honoree: Gefeierter
+Annotator: 'Annotierende Person'
+'Enacting jurisdiction': 'Normerlassende Gebietskörperschaft'
+Addressee: Adressat
+'Writer of introduction': 'Verfasser einer Einleitung'
+Dedicator: Widmender
+Creator: 'Geistiger Schöpfer'
